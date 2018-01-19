@@ -27,5 +27,11 @@ public class HelloController {
         return "hello";
     }
 
+    //定义一个Controller转到首页
+    @RequestMapping("index")
+    public String index(){
+        return "homepage/index";
+    }
+
 
 }
