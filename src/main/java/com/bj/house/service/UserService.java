@@ -1,10 +1,9 @@
 package com.bj.house.service;
 
-import com.bj.house.common.model.User;
-import com.bj.house.mapper.UserMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.bj.house.persistance.entity.User;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,11 +12,17 @@ import java.util.List;
 @Service
 public class UserService {
 
-    @Autowired
-    private UserMapper userMapper;
+   /* @Autowired
+    private UserMapper userMapper;*/
 
     public List<User> getUsers(){
-        return userMapper.selectUsers();
+
+        List<User> tmp = new ArrayList<>();
+        User user = new User();
+        user.setName("dsadsad");
+        tmp.add(user);
+
+        return tmp;
     }
 
 

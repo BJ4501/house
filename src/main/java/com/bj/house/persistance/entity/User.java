@@ -9,6 +9,9 @@ import java.util.Date;
  */
 @SuppressWarnings("unused")
 @Entity
+//fixme 如果直接将表命名为user 则会出现以下异常，原因不明
+//SchemaExtractionException: More than one table found in namespace (, ) : user
+//解决方法：先使用hms_user作为表名导入，再在数据库中将表名修改回user，同时将Table name 改为user
 @Table(name = "user",
         indexes = {@Index(name = "idx_email",columnList = "email",unique = true)})
 public class User {

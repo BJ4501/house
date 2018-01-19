@@ -26,7 +26,8 @@ public class House {
     private Integer beds = 0;
     @Column(columnDefinition = "INT(11) COMMENT '卫生间数量'", nullable = false)
     private Integer baths = 0;
-    @Column(columnDefinition = "DOUBLE(11) COMMENT '评分'", nullable = false)
+    //注意MariaDb中 DOUBLE不要指定长度
+    @Column(columnDefinition = "DOUBLE COMMENT '评分'", nullable = false)
     private Double rating = 0d;
     @Column(columnDefinition = "VARCHAR(512) COMMENT '房产描述'", nullable = false)
     private String remarks = "";

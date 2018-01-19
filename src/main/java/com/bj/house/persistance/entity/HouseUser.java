@@ -15,9 +15,9 @@ public class HouseUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "BIGINT(20) COMMENT '主键id'", unique = true)
     private Integer id;
-    @Column(columnDefinition = "BIGINT(20) COMMENT '房屋id'", nullable = false)
+    @Column(name = "house_id", columnDefinition = "BIGINT(20) COMMENT '房屋id'", nullable = false)
     private Integer houseId = 0;
-    @Column(columnDefinition = "BIGINT(20) COMMENT '用户id'", nullable = false)
+    @Column(name = "user_id", columnDefinition = "BIGINT(20) COMMENT '用户id'", nullable = false)
     private Integer userId = 0;
     @Column(columnDefinition = "DATETIME COMMENT '创建时间'", nullable = false, updatable = false)
     private Date createTime = new Date();

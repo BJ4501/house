@@ -25,7 +25,7 @@ public class LogFilter implements Filter {
     //在方法拦截的时候进行
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        logger.info("Req comming");
+        //logger.info("Req comming");
         filterChain.doFilter(servletRequest,servletResponse);
     }
 
