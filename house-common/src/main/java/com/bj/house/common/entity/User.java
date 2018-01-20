@@ -19,7 +19,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "BIGINT(20) COMMENT '主键id'", unique = true)
-    private Integer id;
+    private Long id;
     @Column(columnDefinition = "VARCHAR(20) COMMENT '姓名'", nullable = false)
     private String name = "";
     @Column(columnDefinition = "CHAR(13) COMMENT '手机号'", nullable = false)
@@ -39,13 +39,13 @@ public class User {
     @Column(columnDefinition = "TINYINT(1) COMMENT '是否启用 1-启用 2-停用'", nullable = false)
     private int enable = 0;
     @Column(columnDefinition = "INT(11) COMMENT '所属经纪机构'", nullable = false)
-    private Integer agencyId = 0;
+    private Long agencyId = 0L;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -121,11 +121,11 @@ public class User {
         this.enable = enable;
     }
 
-    public Integer getAgencyId() {
+    public Long getAgencyId() {
         return agencyId;
     }
 
-    public void setAgencyId(Integer agencyId) {
+    public void setAgencyId(Long agencyId) {
         this.agencyId = agencyId;
     }
 }
