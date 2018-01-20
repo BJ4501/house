@@ -33,11 +33,11 @@ public class User {
     @Column(columnDefinition = "VARCHAR(512) COMMENT '头像图片'", nullable = false)
     private String avatar = "";
     @Column(columnDefinition = "TINYINT(1) COMMENT '1-普通用户 2-经纪人'", nullable = false)
-    private int type = 0;
+    private Integer type = 0;
     @Column(columnDefinition = "DATETIME COMMENT '创建时间'", nullable = false, updatable = false)
     private Date createTime = new Date();
     @Column(columnDefinition = "TINYINT(1) COMMENT '是否启用 1-启用 2-停用'", nullable = false)
-    private int enable = 0;
+    private Integer enable = 0;
     @Column(columnDefinition = "INT(11) COMMENT '所属经纪机构'", nullable = false)
     private Long agencyId = 0L;
 
@@ -97,11 +97,11 @@ public class User {
         this.avatar = avatar;
     }
 
-    public int getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 
@@ -113,11 +113,11 @@ public class User {
         this.createTime = createTime;
     }
 
-    public int getEnable() {
+    public Integer getEnable() {
         return enable;
     }
 
-    public void setEnable(int enable) {
+    public void setEnable(Integer enable) {
         this.enable = enable;
     }
 

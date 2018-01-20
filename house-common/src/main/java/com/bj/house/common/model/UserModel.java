@@ -31,7 +31,7 @@ public class UserModel {
 
     private Integer enable;
 
-    private String avator;
+    private String avatar;
 
     private MultipartFile avatarFile;
 
@@ -73,12 +73,12 @@ public class UserModel {
         this.enable = enable;
     }
 
-    public String getAvator() {
-        return avator;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setAvator(String avator) {
-        this.avator = avator;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public MultipartFile getAvatarFile() {

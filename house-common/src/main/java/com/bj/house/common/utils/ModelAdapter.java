@@ -10,25 +10,6 @@ import com.bj.house.common.model.UserModel;
  */
 public class ModelAdapter {
 
-/*
-    private Long id;
-    private String email;
-    private String phone;
-    private String name;
-    private String passwd;
-    private String confirmPasswd;
-    //1-普通用户 2-经纪人
-    private Integer type;
-    private Date createTime;
-    private Integer enable;
-    private String avator;
-    private MultipartFile avatorFile;
-    private String newPassword;
-    private String key;
-    private Long agencyId;
-*/
-
-
     //转换为User model
     public static User ToUser(UserModel model){
         User user = new User();
@@ -47,13 +28,39 @@ public class ModelAdapter {
             user.setType(model.getType());
         if (model.getEnable() != null)
             user.setEnable(model.getEnable());
-        if (model.getAvator() != null)
-            user.setAvatar(model.getAvator());
+        if (model.getAvatar() != null)
+            user.setAvatar(model.getAvatar());
         if (model.getAgencyId() != null)
             user.setAgencyId(model.getAgencyId());
         if (model.getAboutme() != null)
             user.setAboutme(model.getAboutme());
         return user;
+    }
+
+    //转换为User model
+    public static UserModel ToUserModel(User user){
+        UserModel model = new UserModel();
+        if (user.getId() != null)
+            model.setId(user.getId());
+        if (user.getEmail() != null)
+            model.setEmail(user.getEmail());
+        if (user.getPhone() != null)
+            model.setPhone(user.getPhone());
+        if (user.getName() != null)
+            model.setName(user.getName());
+        if (user.getPasswd() != null)
+            model.setPasswd(user.getPasswd());
+        if (user.getType() != null)
+            model.setType(user.getType());
+        if (user.getEnable() != null)
+            model.setEnable(user.getEnable());
+        if (user.getAvatar() != null)
+            model.setAvatar(user.getAvatar());
+        if (user.getAgencyId() != null)
+            model.setAgencyId(user.getAgencyId());
+        if (user.getAboutme() != null)
+            model.setAboutme(user.getAboutme());
+        return model;
     }
 
 

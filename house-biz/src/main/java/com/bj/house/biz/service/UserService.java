@@ -38,16 +38,8 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-
-    public List<User> getUsers(){
-
-        List<User> tmp = new ArrayList<>();
-        User user = new User();
-        user.setName("dsadsad");
-        tmp.add(user);
-
-        return tmp;
-    }
+    @Value("${file.prefix}")
+    private String imgPrefix;
 
     /**
      * 1.插入数据库，状态时非激活；密码加盐MD5；保存头像到本地
@@ -63,7 +55,7 @@ public class UserService {
         //上传头像，保存地址
         List<String> imgList = fileService.getImgPath(Lists.newArrayList(account.getAvatarFile()));
         if (!imgList.isEmpty()){
-            account.setAvator(imgList.get(0));
+            account.setAvatar(imgList.get(0));
         }
 
         //NOTE：填充默认值，在这里使用一次BeanHelper，以后就不用了
@@ -83,5 +75,19 @@ public class UserService {
 
     public boolean enable(String key) {
         return mailService.enable(key);
+    }
+
+    //校验用户名密码
+    public UserModel auth(String username, String password) {
+        User user = userRepository.findByEmail(username);
+        String pwd = HashUtils.encryPassword(password);
+        //如果用户不存在，用户不为已激活状态，用户密码不正确-->返回null
+        if (user == null || user.getEnable() != 1 || !user.getPasswd().equals(pwd)){
+            return null;
+        }
+        user.setAvatar(imgPrefix+user.getAvatar());
+
+        //TODO 转换为UserModel
+        return ModelAdapter.ToUserModel(user);
     }
 }

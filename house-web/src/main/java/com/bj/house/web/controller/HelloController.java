@@ -15,7 +15,7 @@ import java.util.List;
 @Controller
 public class HelloController {
 
-    @Autowired
+/*    @Autowired
     UserService userService;
 
     @RequestMapping("hello")
@@ -27,7 +27,7 @@ public class HelloController {
 
         modelMap.put("user",one);
         return "hello";
-    }
+    }*/
 
     //定义一个Controller转到首页
     @RequestMapping("index")
