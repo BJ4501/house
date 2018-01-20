@@ -11,6 +11,8 @@ public interface UserRepository extends JpaRepository<User,Integer>,JpaSpecifica
 
     int deleteByEmail(String email);
 
+    User findByEmail(String email);
+
 /*
     List<BookInfo> queryByBookName(String bookName);
 

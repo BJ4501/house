@@ -33,25 +33,25 @@ public class ModelAdapter {
     public static User ToUser(UserModel model){
         User user = new User();
         //TODO 设置判断：如果不为空才可存入user，防止null将初始值给覆盖掉
-        if (model.getId() == null)
+        if (model.getId() != null)
             user.setId(model.getId());
-        if (model.getEmail() == null)
+        if (model.getEmail() != null)
             user.setEmail(model.getEmail());
-        if (model.getPhone() == null)
+        if (model.getPhone() != null)
             user.setPhone(model.getPhone());
-        if (model.getName() == null)
+        if (model.getName() != null)
             user.setName(model.getName());
-        if (model.getPasswd() == null)
+        if (model.getPasswd() != null)
             user.setPasswd(model.getPasswd());
-        if (model.getType() == null)
+        if (model.getType() != null)
             user.setType(model.getType());
-        if (model.getEnable() == null)
+        if (model.getEnable() != null)
             user.setEnable(model.getEnable());
-        if (model.getAvator() == null)
+        if (model.getAvator() != null)
             user.setAvatar(model.getAvator());
-        if (model.getAgencyId() == null)
+        if (model.getAgencyId() != null)
             user.setAgencyId(model.getAgencyId());
-        if (model.getAboutme() == null)
+        if (model.getAboutme() != null)
             user.setAboutme(model.getAboutme());
         return user;
     }

@@ -1,5 +1,6 @@
 package com.bj.house.biz.service;
 
+import com.google.common.base.Strings;
 import com.google.common.io.Files;
 import org.apache.commons.lang3.StringUtils;
 import com.google.common.collect.Lists;
@@ -27,6 +28,9 @@ public class FileService {
     //存入数据库的只是一个路径
 
     public List<String> getImgPath(List<MultipartFile> files){
+      /*  if (Strings.isNullOrEmpty(filePath)) {
+            filePath = getResourcePath();
+        }*/
         List<String> paths = Lists.newArrayList();
 
         files.forEach(file -> {
@@ -35,6 +39,8 @@ public class FileService {
                 try {
                     localFile = saveToLocal(file,filePath);
                     //返回的结果只是相对路径
+                    //由于Windows路径，需要转义符
+                    filePath = filePath.replace("//", "\\");
                     String path = StringUtils.substringAfterLast(localFile.getAbsolutePath(),filePath);
                     paths.add(path);
                 } catch (Exception e) {
@@ -54,7 +60,7 @@ public class FileService {
         }
         //使用Guava的Files将上传的文件写到刚才创建的newFile中
         Files.write(file.getBytes(),newFile);
-        return null;
+        return newFile;
     }
 
 

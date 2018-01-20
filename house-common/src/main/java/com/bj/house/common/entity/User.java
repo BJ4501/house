@@ -22,8 +22,8 @@ public class User {
     private Long id;
     @Column(columnDefinition = "VARCHAR(20) COMMENT '姓名'", nullable = false)
     private String name = "";
-    @Column(columnDefinition = "CHAR(13) COMMENT '手机号'", nullable = false)
-    private Integer phone = 0;
+    @Column(columnDefinition = "VARCHAR(13) COMMENT '手机号'", nullable = false)
+    private String phone = "";
     @Column(columnDefinition = "VARCHAR(90) COMMENT '电子邮箱'", nullable = false)
     private String email = "";
     @Column(columnDefinition = "VARCHAR(250) COMMENT '自我介绍'", nullable = false)
@@ -57,11 +57,11 @@ public class User {
         this.name = name;
     }
 
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

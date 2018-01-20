@@ -29,18 +29,6 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class UserService {
 
-    //构建一个Guava缓存
-    private final Cache<String,String> registerCache = CacheBuilder
-            .newBuilder()
-            .maximumSize(100) //最大缓存数量
-            .expireAfterAccess(15, TimeUnit.MINUTES) //设置过期时间
-            .removalListener(new RemovalListener<String, String>() {
-                @Override
-                public void onRemoval(RemovalNotification<String, String> notification) {
-                    userRepository.deleteByEmail(notification.getValue());
-                }
-            }).build();
-
     @Autowired
     private FileService fileService;
 
@@ -50,8 +38,6 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Value("${domain.name}")
-    private String domainName;
 
     public List<User> getUsers(){
 
@@ -75,7 +61,7 @@ public class UserService {
         //ModelAdapter :将Vo的Model转换为entity Model
         account.setPasswd(HashUtils.encryPassword(account.getNewPassword()));
         //上传头像，保存地址
-        List<String> imgList = fileService.getImgPath(Lists.newArrayList(account.getAvatorFile()));
+        List<String> imgList = fileService.getImgPath(Lists.newArrayList(account.getAvatarFile()));
         if (!imgList.isEmpty()){
             account.setAvator(imgList.get(0));
         }
@@ -90,26 +76,12 @@ public class UserService {
         //使用Jpa插入操作
         User user = userRepository.save(ModelAdapter.ToUser(account));
         //发送注册邮件
-        registerNotify(account.getEmail());
-        return false;
+        mailService.registerNotify(account.getEmail());
+        return true;
     }
 
-    /**
-     * 发送注册邮件-异步操作
-     * 1.缓存Key-email的关系
-     * 2.使用Spring mail发送邮件
-     * 3.借助异步框架进行异步操作
-     * @param email
-     */
-    @Async //SpringBoot异步框架:使用这个注解后，在调用这个方法时，SpringBoot会创建线程池，将此方法放入线程池中运行
-    public void registerNotify(String email) {
-        //随机生成一个10位的数字字母字符串
-        String randomKey = RandomStringUtils.randomAlphabetic(10);
-        registerCache.put(randomKey,email);
-        //生成链接样式：
-        //"/accounts/verify?key="+randomKey
-        String url = "http://"+domainName+"/accounts/verify?key="+randomKey;
-        mailService.sendEmail("激活邮件，地址：",url,email);
-    }
 
+    public boolean enable(String key) {
+        return mailService.enable(key);
+    }
 }

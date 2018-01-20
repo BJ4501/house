@@ -14,7 +14,7 @@ public class UserModel {
 
     private String email;
 
-    private Integer phone;
+    private String phone;
 
     private String name;
 
@@ -33,7 +33,7 @@ public class UserModel {
 
     private String avator;
 
-    private MultipartFile avatorFile;
+    private MultipartFile avatarFile;
 
     private String newPassword;
 
@@ -81,12 +81,12 @@ public class UserModel {
         this.avator = avator;
     }
 
-    public MultipartFile getAvatorFile() {
-        return avatorFile;
+    public MultipartFile getAvatarFile() {
+        return avatarFile;
     }
 
-    public void setAvatorFile(MultipartFile avatorFile) {
-        this.avatorFile = avatorFile;
+    public void setAvatarFile(MultipartFile avatarFile) {
+        this.avatarFile = avatarFile;
     }
 
     public String getNewPassword() {
@@ -129,11 +129,11 @@ public class UserModel {
         this.email = email;
     }
 
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

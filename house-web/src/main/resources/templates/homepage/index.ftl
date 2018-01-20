@@ -7,7 +7,7 @@
 <!-- Wrapper -->
 <div class="wrapper">
 
-<@common.nav/>
+    <@common.nav/>
 
     <!-- Slider -->
     <div id="slider" class="loading has-parallax">
@@ -92,10 +92,10 @@
 
     <!-- Page Content -->
     <div id="page-content">
-
-
+       
+      
         <aside id="advertising" class="block">
-
+            
         </aside>
         <section id="new-properties" class="block">
             <div class="container">
@@ -103,10 +103,45 @@
                     <h2>新上房源</h2>
                     <a href="/house/list" class="link-arrow">所有房源</a>
                 </header>
-                <div class="row">
-
-
-                </div><!-- /.row-->
+                <#--<div class="row">
+                   <#list recomHouses as house>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="property">
+                            <a href="/house/detail?id=${house.id}">
+                                <div class="property-image">
+                                    <img alt="" src="${(house.firstImg)!}" style="width: 262px;height: 196px">
+                                </div>
+                                <div class="overlay">
+                                    <div class="info">
+                                        <div class="tag price">￥ ${house.price} 万元</div>
+                                        <h3>${house.name}</h3>
+                                        <figure>${house.address}</figure>
+                                    </div>
+                                    <ul class="additional-info">
+                                        <li>
+                                            <header>面积:</header>
+                                            <figure>${house.area}m<sup>2</sup></figure>
+                                        </li>
+                                        <li>
+                                            <header>床:</header>
+                                            <figure>${house.beds}</figure>
+                                        </li>
+                                        <li>
+                                            <header>卫生间:</header>
+                                            <figure>${house.baths}</figure>
+                                        </li>
+                                        <li>
+                                            <header>车库:</header>
+                                            <figure>0</figure>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div><!-- /.property &ndash;&gt;
+                    </div><!-- /.col-md-3 &ndash;&gt;
+                   </#list>
+                 
+                </div><!-- /.row&ndash;&gt;-->
             </div><!-- /.container-->
         </section><!-- /#new-properties-->
         <section id="testimonials" class="block">
@@ -153,28 +188,28 @@
     </div>
     <!-- end Page Content -->
     <!-- Page Footer -->
-<@common.footer/>
+     <@common.footer/>
     <!-- end Page Footer -->
 </div>
 
 <div id="overlay"></div>
 
-<@common.js/>
+ <@common.js/>
 
 <script>
     $(window).load(function(){
         initializeOwl(false);
     });
     $(document).ready(function() {
-        var errorMsg   = "${errorMsg!""}";
-        var successMsg = "${successMsg!""}";
-        if(errorMsg){
-            errormsg("error",errorMsg);
-        }
-        if(successMsg) {
-            successmsg("success",successMsg);
-        }
-    })
+          var errorMsg   = "${errorMsg!""}";
+          var successMsg = "${successMsg!""}";
+          if(errorMsg){ 
+              errormsg("error",errorMsg);
+          }
+          if(successMsg) {
+              successmsg("success",successMsg);
+          }
+        })
 </script>
 </body>
 </html>
