@@ -63,5 +63,29 @@ public class ModelAdapter {
         return model;
     }
 
+    //更新User操作，为空的信息不替换
+    public static User updateToUser(User oldUser,UserModel model){
+        //如果不为空才可存入user，防止null将原来值给覆盖掉
+        if (model.getPhone() != null)
+            oldUser.setPhone(model.getPhone());
+        if (model.getName() != null)
+            oldUser.setName(model.getName());
+        if (model.getPasswd() != null)
+            oldUser.setPasswd(model.getPasswd());
+        if (model.getType() != null)
+            oldUser.setType(model.getType());
+        if (model.getEnable() != null)
+            oldUser.setEnable(model.getEnable());
+        if (model.getAvatar() != null)
+            oldUser.setAvatar(model.getAvatar());
+        if (model.getAgencyId() != null)
+            oldUser.setAgencyId(model.getAgencyId());
+        if (model.getAboutme() != null)
+            oldUser.setAboutme(model.getAboutme());
+        return oldUser;
+    }
+
+
+
 
 }

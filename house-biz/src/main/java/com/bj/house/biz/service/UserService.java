@@ -90,4 +90,22 @@ public class UserService {
         //TODO 转换为UserModel
         return ModelAdapter.ToUserModel(user);
     }
+
+    public UserModel getUserByQuery(UserModel model) {
+
+        User user = userRepository.findByEmail(model.getEmail());
+        return ModelAdapter.ToUserModel(user);
+    }
+
+    //更新用户信息
+    public void updateUser(UserModel updateUser, String email) {
+        updateUser.setEmail(email);
+        //将更新时间保存
+        BeanHelper.onUpdate(updateUser);
+        //将UserModel-> User
+        User user = userRepository.findByEmail(email);
+        user = ModelAdapter.updateToUser(user,updateUser);
+        //更新用户信息
+        userRepository.save(user);
+    }
 }

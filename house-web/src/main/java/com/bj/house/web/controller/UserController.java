@@ -5,6 +5,7 @@ import com.bj.house.common.constants.CommonConstants;
 import com.bj.house.common.entity.User;
 import com.bj.house.common.model.UserModel;
 import com.bj.house.common.result.ResultMsg;
+import com.bj.house.common.utils.HashUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -95,6 +96,51 @@ public class UserController {
         //注销掉原所有session信息
         session.invalidate();
         return "redirect:/index";
+    }
+
+    //---个人信息页---
+
+    /**
+     * 1.提供个人信息页面
+     * 2.更新用户信息
+     * @param updateUser
+     * @param model
+     * @return
+     */
+    @RequestMapping("accounts/profile")
+    public String profile(HttpServletRequest request, UserModel updateUser, ModelMap model){
+        if (updateUser.getEmail() == null){
+            //因为Email信息是不可更改的
+            //前端如果不返回Email信息，则说明是查看个人信息，反之，更改用户信息
+            return "/user/accounts/profile";
+        }
+        userService.updateUser(updateUser,updateUser.getEmail());
+
+        UserModel query = new UserModel();
+        query.setEmail(updateUser.getEmail());
+
+        //重新设置session
+        UserModel userModel = userService.getUserByQuery(query);
+        request.getSession(true).setAttribute(CommonConstants.USER_ATTRIBUTE,userModel);
+        return "redirect:/accounts/profile?" + ResultMsg.successMsg("更新成功").asUrlParams();
+    }
+
+    /**
+     * 修改密码操作
+     * @return
+     */
+    @RequestMapping("accounts/changePassword")
+    public String changePassword(String email, String password, String newPassword,
+                                 String confirmPassword, ModelMap mode) {
+        UserModel model = userService.auth(email,password);
+        if (model == null || !confirmPassword.equals(newPassword)){
+            return "redirect:/accounts/profile?" + ResultMsg.errorMsg("密码错误").asUrlParams();
+        }
+
+        UserModel updateUser = new UserModel();
+        updateUser.setPasswd(HashUtils.encryPassword(newPassword));
+        userService.updateUser(updateUser,email);
+        return "redirect:/accounts/profile?" + ResultMsg.successMsg("更新成功").asUrlParams();
     }
 
 
