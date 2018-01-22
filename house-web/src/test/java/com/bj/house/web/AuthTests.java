@@ -13,6 +13,8 @@ import org.springframework.test.context.junit4.SpringRunner;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
+//可以指定端口进行测试
+//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class AuthTests {
 
     @Autowired
@@ -20,7 +22,7 @@ public class AuthTests {
 
     @Test
     public void testAuth() {
-        UserModel user = userService.auth("spring_boot@163.com", "111111");
+        UserModel user = userService.auth("rosejeck@126.com", "111111");
         assert user != null;
         System.out.println(user.getAboutme());
     }
