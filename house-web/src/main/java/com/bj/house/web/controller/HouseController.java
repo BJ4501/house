@@ -2,6 +2,7 @@ package com.bj.house.web.controller;
 
 import com.bj.house.biz.service.HouseService;
 import com.bj.house.common.entity.House;
+import com.bj.house.common.page.PageData;
 import com.bj.house.common.page.PageParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,13 +28,10 @@ public class HouseController {
      */
     @RequestMapping("/house/list")
     public String houseList(Integer pageSize,Integer pageNum,House query,ModelMap modelMap){
-        houseService.queryHouse(query, PageParams.build(pageSize, pageNum));
-
-
-
-
-
-        return "homepage/index";
+        PageData<House> ps = houseService.queryHouse(query, PageParams.build(pageSize, pageNum));
+        modelMap.put("ps",ps);
+        modelMap.put("vo",query);
+        return "house/listing";
     }
 
 

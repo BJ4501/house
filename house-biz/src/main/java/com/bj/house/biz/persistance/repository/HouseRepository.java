@@ -33,7 +33,7 @@ public interface HouseRepository extends JpaRepository<House,Integer>,JpaSpecifi
 
     //数量查询
     @Query(value = "select COUNT(*) from house ",nativeQuery = true)
-    Integer queryHouseCount();
+    Long queryHouseCount();
 
     //模糊查询
     @Query(value = "select * from house i where i.name like CONCAT('%',:houseName,'%')",nativeQuery = true)
