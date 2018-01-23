@@ -19,9 +19,9 @@ public class HouseMsg {
     @Column(columnDefinition = "DATETIME COMMENT '创建时间'", nullable = false, updatable = false)
     private Date createTime = new Date();
     @Column(columnDefinition = "BIGINT(20) COMMENT '经纪人id'", nullable = false)
-    private Integer agentId = 0;
+    private Long agentId = 0L;
     @Column(columnDefinition = "BIGINT(20) COMMENT '房屋id'", nullable = false)
-    private Integer houseId = 0;
+    private Long houseId = 0L;
     @Column(columnDefinition = "VARCHAR(20) COMMENT '用户名'", nullable = false)
     private String userName = "";
 
@@ -49,19 +49,19 @@ public class HouseMsg {
         this.createTime = createTime;
     }
 
-    public Integer getAgentId() {
+    public Long getAgentId() {
         return agentId;
     }
 
-    public void setAgentId(Integer agentId) {
+    public void setAgentId(Long agentId) {
         this.agentId = agentId;
     }
 
-    public Integer getHouseId() {
+    public Long getHouseId() {
         return houseId;
     }
 
-    public void setHouseId(Integer houseId) {
+    public void setHouseId(Long houseId) {
         this.houseId = houseId;
     }
 

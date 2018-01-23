@@ -18,7 +18,7 @@ public class HouseUser {
     @Column(name = "house_id", columnDefinition = "BIGINT(20) COMMENT '房屋id'", nullable = false)
     private Integer houseId = 0;
     @Column(name = "user_id", columnDefinition = "BIGINT(20) COMMENT '用户id'", nullable = false)
-    private Integer userId = 0;
+    private Long userId = 0L;
     @Column(columnDefinition = "DATETIME COMMENT '创建时间'", nullable = false, updatable = false)
     private Date createTime = new Date();
     @Column(columnDefinition = "TINYINT(1) COMMENT '1-售卖 2-收藏'", nullable = false)
@@ -40,11 +40,11 @@ public class HouseUser {
         this.houseId = houseId;
     }
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 

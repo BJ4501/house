@@ -1,5 +1,7 @@
 package com.bj.house.common.entity;
 
+import com.google.common.base.Splitter;
+import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -118,6 +120,14 @@ public class House {
 
     public void setImages(String images) {
         this.images = images;
+        if (!Strings.isNullOrEmpty(images)){
+            //使用Guava切分
+            List<String> list = Splitter.on(",").splitToList(images);
+            if (!list.isEmpty()){
+                this.firstImg = list.get(0);
+                this.imageList = list;
+            }
+        }
     }
 
     public Integer getArea() {
